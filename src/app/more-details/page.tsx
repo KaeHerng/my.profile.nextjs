@@ -1,4 +1,6 @@
+
 // default server component
+import { Suspense } from "react";
 import DetailsClient from "./DetailsClient";
 
 export default function MoreDetailsPage() {
@@ -10,7 +12,9 @@ export default function MoreDetailsPage() {
       </p>
 
       {/* Client component handles URL params */}
-      <DetailsClient />
+       <Suspense fallback={<p>Loading details...</p>}>
+        <DetailsClient />
+       </Suspense>
     </section>
   );
 }

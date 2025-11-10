@@ -7,8 +7,8 @@ import Contact from "@/components/Contact";
 export default function Home() {
   return (
     <>
-      <Navbar />
-      <main className="pt-20"> {/* add top padding so content is below navbar */}
+      {/* <Navbar /> */}
+      <main className="pt-0"> {/* add top padding so content is below navbar */}
         <HeroSection />
         <AboutMe />
         <Projects />

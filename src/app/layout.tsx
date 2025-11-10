@@ -1,7 +1,9 @@
+// layout.tsx
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import Sidebar from "@/components/Sidebar/Sidebar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,16 +22,28 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <Navbar />
-        {children}
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        {/* Global layout */}
+        <div className="flex flex-col min-h-screen bg-gray-50">
+          {/* Navbar always on top */}
+          <Navbar />
+
+          {/* Main Content Section (Sidebar lives inside this) */}
+          <main className="flex flex-1 p-4 gap-4 relative">
+            {/* Sidebar on the left, inside main */}
+            <Sidebar />
+
+            {/* Page content */}
+            <div className="flex-1 bg-white rounded-3xl shadow-sm p-5 transition-all duration-300">
+              {children}
+            </div>
+          </main>
+        </div>
       </body>
     </html>
   );
