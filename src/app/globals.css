@@ -28,3 +28,45 @@ body {
 html {
   scroll-behavior: smooth;
 }
+
+
+
+.layout-container {
+  @apply flex flex-col min-h-screen bg-gray-50;
+}
+
+.main-content {
+  @apply flex flex-1 p-4 gap-4 relative;
+}
+
+.page-content {
+  @apply flex-1 bg-white rounded-3xl shadow-sm p-5 transition-all duration-300;
+}
+
+/* custom project card effects */
+
+/* Reusable hover effects and card styling */
+/* Global styles for Projects section */
+
+.project-card {
+  transition: all 0.5s ease;
+}
+
+.project-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 15px 30px rgba(59, 130, 246, 0.2);
+}
+
+.project-image {
+  transition: transform 0.5s ease;
+}
+
+.project-card:hover .project-image {
+  transform: scale(1.1);
+}
+
+.project-badge {
+  font-weight: 500;
+  border-radius: 9999px; /* fully rounded pill */
+}
+

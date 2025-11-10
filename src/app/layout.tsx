@@ -48,3 +48,16 @@ export default function RootLayout({
     </html>
   );
 }
+
+
+{/* <html lang="en">
+  <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+    <div className="layout-container">
+      <Navbar />
+      <main className="main-content">
+        <Sidebar />
+        <div className="page-content">{children}</div>
+      </main>
+    </div>
+  </body>
+</html> */}
