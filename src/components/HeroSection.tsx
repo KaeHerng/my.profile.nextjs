@@ -8,9 +8,9 @@ export default function HeroSection() {
 
   return (
     <section id="hero" className="min-h-screen flex flex-col items-center justify-center text-center bg-gray-50">
-      <h1 className="text-5xl font-bold mb-4">Hi, I’m [Your Name] 👋</h1>
+      <h1 className="text-5xl font-bold mb-4">Hi, I’m [Chong Kae Herng] 👋</h1>
       <p className="text-lg text-gray-600 max-w-xl">
-        I’m a [Your Role — e.g., Frontend Developer]. Welcome to my portfolio!
+        I’m a [Frontend Developer]. Welcome to my portfolio!
       </p>
 
        {/* Button to trigger modal */}
