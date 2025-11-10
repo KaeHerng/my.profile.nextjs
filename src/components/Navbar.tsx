@@ -12,7 +12,7 @@ export default function Navbar() {
 
   // Function to navigate to MoreDetails page
   const goToDetails = () => {
-    router.push("/more-details");
+    router.push("/more-details?ref=navbar&user=123");
     setIsOpen(false); // close mobile menu if open
   };
 
