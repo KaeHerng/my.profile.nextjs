@@ -33,19 +33,17 @@ export default function Sidebar() {
           ${isOpen ? "w-64" : "w-20"}`}
       >
         {/* Header / Toggle */}
-        <div className="flex items-center justify-between px-5 py-4 border-b border-gray-200">
+        <div className={`flex items-center justify-between px-5 py-4 border-b border-gray-200 ${!isOpen ? 'justify-center' : ''}`}>
           {/* Title or placeholder */}
-          {isOpen ? (
+          {isOpen &&
             <h1 className="text-xl font-bold text-gray-800 whitespace-nowrap">
               MyPortfolio
             </h1>
-          ) : (
-            <div className="w-32">{/* same width as title */}</div>
-          )}
+          }
 
           {/* Toggle Button */}
           <button
-            className="text-gray-600 hover:text-blue-600 transition-colors text-lg"
+            className="text-gray-600 hover:text-blue-600 transition-colors text-lg cursor-pointer"
             onClick={() => setIsOpen(!isOpen)}
           >
             {isOpen ? "◀" : "▶"}
