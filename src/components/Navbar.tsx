@@ -7,6 +7,7 @@ import Link from "next/link";
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isSubmenuOpen, setIsSubmenuOpen] = useState(false);
+  const [isAuthSubmenuOpen, setAuthIsSubmenuOpen] = useState(false);
   let closeTimeout: NodeJS.Timeout;
   const router = useRouter();
 
@@ -30,12 +31,25 @@ export default function Navbar() {
     setIsSubmenuOpen(false);
   };
 
+  const goToRegister= () => {
+    router.push("/Auth/registration");
+    setIsOpen(false);
+    setAuthIsSubmenuOpen(false);
+  };
+
+  const goToLogin= () => {
+    router.push("/Auth/login");
+    setIsOpen(false);
+    setAuthIsSubmenuOpen(false);
+  };
+
   // 🔹 点击其他区域关闭 submenu
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
       if (!target.closest(".submenu-container")) {
         setIsSubmenuOpen(false);
+        setAuthIsSubmenuOpen(false);
       }
     };
     document.addEventListener("click", handleClickOutside);
@@ -55,13 +69,48 @@ export default function Navbar() {
         <li><Link href="/#about">About</Link></li>
         <li><Link href="/#projects">Projects</Link></li>
         <li><Link href="/#contact">Contact</Link></li>
-        <li>
-          <button
-            onClick={goToDetails}
-            className="hover:text-blue-600 cursor-pointer"
-          >
-            Details
+        <li
+          className="relative submenu-container"
+          onMouseEnter={() => {
+            clearTimeout(closeTimeout);
+            setAuthIsSubmenuOpen(true);
+            setIsSubmenuOpen(false);
+          }}
+          onMouseLeave={() => {
+            closeTimeout = setTimeout(() => setAuthIsSubmenuOpen(false), 200); // 200ms 延迟
+          }}
+        >
+          <button className="hover:text-blue-600 cursor-pointer flex items-center gap-1">
+            Auth ▾
           </button>
+
+          {isAuthSubmenuOpen && (
+            <ul
+              className="absolute top-full right-0 mt-1 bg-white shadow-md rounded-lg py-2 text-gray-700 text-sm z-50 w-48 min-w-[150px]"
+              onMouseEnter={() => clearTimeout(closeTimeout)}
+              onMouseLeave={() => {
+                closeTimeout = setTimeout(() => setAuthIsSubmenuOpen(false), 200);
+              }}
+            >
+              <li>
+                <button
+                  onClick={goToRegister}
+                  className="block w-full text-left px-4 py-2 hover:bg-gray-100"
+                >
+                  Registration
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={goToLogin}
+                  className="block w-full text-left px-4 py-2 hover:bg-gray-100"
+                >
+                  Login
+                </button>
+              </li>
+              {/* 可以继续添加更多 submenu */}
+            </ul>
+          )}
         </li>
 
         {/* Others submenu (Desktop hover with delay) */}
@@ -70,6 +119,7 @@ export default function Navbar() {
           onMouseEnter={() => {
             clearTimeout(closeTimeout);
             setIsSubmenuOpen(true);
+            setAuthIsSubmenuOpen(false);
           }}
           onMouseLeave={() => {
             closeTimeout = setTimeout(() => setIsSubmenuOpen(false), 200); // 200ms 延迟
@@ -98,8 +148,7 @@ export default function Navbar() {
               <li>
                 <button
                   onClick={goToDashboard}
-                  className="block w-full text-left px-4 py-2 hover:bg-gray-100"
-                >
+                  className="block w-full text-left px-4 py-2 hover:bg-gray-100">
                   Dashboard
                 </button>
               </li>
@@ -117,17 +166,42 @@ export default function Navbar() {
       {/* Mobile Menu */}
       {isOpen && (
         <ul className="absolute top-full left-0 w-full bg-white shadow-md flex flex-col space-y-4 px-6 py-4 text-gray-700 font-medium md:hidden rounded-b-xl">
-          <li><Link href="#hero" onClick={() => setIsOpen(false)}>Home</Link></li>
-          <li><Link href="#about" onClick={() => setIsOpen(false)}>About</Link></li>
-          <li><Link href="#projects" onClick={() => setIsOpen(false)}>Projects</Link></li>
-          <li><Link href="#contact" onClick={() => setIsOpen(false)}>Contact</Link></li>
-          <li>
-            <button
-              onClick={goToDetails}
-              className="hover:text-blue-600 cursor-pointer"
+          <li><Link href="/#hero" onClick={() => setIsOpen(false)}>Home</Link></li>
+          <li><Link href="/#about" onClick={() => setIsOpen(false)}>About</Link></li>
+          <li><Link href="/#projects" onClick={() => setIsOpen(false)}>Projects</Link></li>
+          <li><Link href="/#contact" onClick={() => setIsOpen(false)}>Contact</Link></li>
+          <li className="submenu-container">
+            <button 
+              onClick={() => setAuthIsSubmenuOpen(prev => !prev)}
+              className="flex justify-between items-center w-full hover:text-blue-600"
             >
-              Details
+              Auth <span>{isAuthSubmenuOpen ? "▲" : "▼"}</span>
             </button>
+
+            {isAuthSubmenuOpen && (
+              <>
+              <ul className="mt-2 bg-gray-50 rounded-lg text-gray-700 text-sm flex flex-col space-y-2 px-4 py-2">
+                <li>
+                  <button
+                    onClick={goToRegister}
+                    className="text-left w-full hover:text-blue-600"
+                  >
+                    Registration
+                  </button>
+                </li>
+              </ul>
+              <ul className="mt-2 bg-gray-50 rounded-lg text-gray-700 text-sm flex flex-col space-y-2 px-4 py-2">
+                <li>
+                  <button
+                    onClick={goToLogin}
+                    className="text-left w-full hover:text-blue-600"
+                  >
+                    Login
+                  </button>
+                </li>
+              </ul>
+              </>
+            )}
           </li>
 
           {/* Others submenu (Mobile click) */}
@@ -140,6 +214,7 @@ export default function Navbar() {
             </button>
 
             {isSubmenuOpen && (
+              <>
               <ul className="mt-2 bg-gray-50 rounded-lg text-gray-700 text-sm flex flex-col space-y-2 px-4 py-2">
                 <li>
                   <button
@@ -150,6 +225,17 @@ export default function Navbar() {
                   </button>
                 </li>
               </ul>
+              <ul className="mt-2 bg-gray-50 rounded-lg text-gray-700 text-sm flex flex-col space-y-2 px-4 py-2">
+                <li>
+                  <button
+                    onClick={goToDashboard}
+                    className="text-left w-full hover:text-blue-600"
+                  >
+                    Dashboard
+                  </button>
+                </li>
+              </ul>
+              </>
             )}
           </li>
         </ul>

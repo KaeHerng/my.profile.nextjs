@@ -30,7 +30,7 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         {/* Global layout */}
         <div className="flex flex-col min-h-screen bg-gray-50 bg-no-repeat bg-center bg-cover"
-        // style={{ backgroundImage: "url('/asset/Background1.jpg')" }}
+        style={{ backgroundImage: "url('/asset/BackgroundMain.jpg')" }}
         >
           {/* Navbar always on top */}
           <Navbar />

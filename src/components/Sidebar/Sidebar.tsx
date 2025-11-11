@@ -10,9 +10,9 @@ export default function Sidebar() {
 
   const menuItems = [
     { label: "Home", href: "/", icon: <HomeIcon size={22} /> },
-    { label: "About Me", href: "/about", icon: <UserIcon size={22} /> },
-    { label: "Projects", href: "/projects", icon: <FolderIcon size={22} /> },
-    { label: "Contact", href: "/contact", icon: <MailIcon size={22} /> },
+    { label: "About Me", href: "/#about", icon: <UserIcon size={22} /> },
+    { label: "Projects", href: "/#projects", icon: <FolderIcon size={22} /> },
+    { label: "Contact", href: "/#contact", icon: <MailIcon size={22} /> },
   ];
 
   return (
@@ -34,11 +34,16 @@ export default function Sidebar() {
       >
         {/* Header / Toggle */}
         <div className="flex items-center justify-between px-5 py-4 border-b border-gray-200">
-          {isOpen && (
+          {/* Title or placeholder */}
+          {isOpen ? (
             <h1 className="text-xl font-bold text-gray-800 whitespace-nowrap">
               MyPortfolio
             </h1>
+          ) : (
+            <div className="w-32">{/* same width as title */}</div>
           )}
+
+          {/* Toggle Button */}
           <button
             className="text-gray-600 hover:text-blue-600 transition-colors text-lg"
             onClick={() => setIsOpen(!isOpen)}
