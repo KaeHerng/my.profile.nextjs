@@ -28,7 +28,7 @@ export default function HeroSection() {
         transition={{ duration: 1 }}
         className="relative z-10 flex flex-col items-center gap-6 px-4"
       >
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-gray-800">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-800">
           Hi, I’m{" "}
           <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-500 animate-gradient-x">
             Chong Kae Herng

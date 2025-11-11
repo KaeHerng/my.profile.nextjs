@@ -1,7 +1,7 @@
 "use client";
 
 export default function AboutMe() {
-  const skills = ["Next.js", "React", "Tailwind CSS", "TypeScript", "Node.js"];
+  const skills = ["React.js", "JavaScript", "Next.js", "Tailwind CSS", "Node.js", "Redux", "Styled + CSS"];
   const stats = [
     { label: "Years of Experience", value: "4+" },
     { label: "Projects Completed", value: "9+" },
@@ -47,13 +47,17 @@ export default function AboutMe() {
 
         {/* Description & Skills */}
         <div className="flex-1 space-y-8">
-          <p className="text-gray-700 text-sm sm:text-base md:text-lg leading-relaxed md:text-left">
+          <p className="text-gray-700 leading-relaxed md:text-left fontsize16">
             I am a passionate developer with experience in building modern web
             applications using{" "}
-            <span className="font-semibold text-blue-600">Next.js</span>,{" "}
-            <span className="font-semibold text-blue-600">React</span>, and{" "}
-            <span className="font-semibold text-blue-600">Tailwind CSS</span>. I enjoy
-            crafting clean, responsive, and user-friendly interfaces that delight users.
+            <span className="font-semibold text-blue-600">React.js</span>,{" "}
+            <span className="font-semibold text-blue-600">Context</span>, and{" "}
+            <span className="font-semibold text-blue-600">Redux</span>. Currently, I’m learning{" "}
+            <span className="font-semibold text-blue-600">Next.js</span>, and{" "}
+            <span className="font-semibold text-blue-600">Tailwind CSS</span> while focusing on creating clean,
+            and user-friendly interfaces using traditional{" "}
+            <span className="font-semibold text-blue-600">Style</span>, and{" "}
+            <span className="font-semibold text-blue-600">CSS</span>
           </p>
 
           {/* Skills */}

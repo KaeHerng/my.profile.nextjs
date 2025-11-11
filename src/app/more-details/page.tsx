@@ -5,7 +5,7 @@ import DetailsClient from "./DetailsClient";
 
 export default function MoreDetailsPage() {
   return (
-    <section className="min-h-screen flex flex-col items-center justify-center text-center p-6 bg-gray-50">
+    <section >
       <h1 className="text-5xl font-bold mb-4">More Details Page</h1>
       <p className="text-lg text-gray-600 max-w-xl">
         This is the MoreDetails page. Static content is fine here.

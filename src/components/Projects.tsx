@@ -11,9 +11,9 @@ export default function Projects() {
     },
     {
       title: "E-commerce App",
-      description: "Full-stack e-commerce application with shopping cart and payment integration.",
+      description: "Frontend e-commerce application with shopping cart and payment integration.",
       image: "/assets/project2.jpg",
-      tech: ["React", "Node.js", "Stripe"],
+      tech: ["React.js", "Node.js", "Stripe"],
       link: "#",
     },
     {
@@ -24,7 +24,7 @@ export default function Projects() {
       link: "#",
     },
     {
-      title: "Open Source 111",
+      title: "Open Source",
       description: "A reusable React component library shared on GitHub.",
       image: "/assets/project3.jpg",
       tech: ["React", "TypeScript"],

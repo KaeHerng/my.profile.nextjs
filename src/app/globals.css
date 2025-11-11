@@ -70,3 +70,169 @@ html {
   border-radius: 9999px; /* fully rounded pill */
 }
 
+
+/* Make header row sticky at the top */
+.table-scroll-wrapper > div:first-child {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: #2c2c3f; /* match header bg */
+}
+
+.table-scroll-wrapper::-webkit-scrollbar {
+  height: 0.5rem; /* horizontal scrollbar height */
+}
+
+.table-scroll-wrapper::-webkit-scrollbar-track {
+  background: #1e1e2f; 
+  /* border-radius: 8px; */
+}
+
+.table-scroll-wrapper::-webkit-scrollbar-thumb {
+  background-color: #4b5563; /* thumb color */
+  border-radius: 0.5rem
+  /* border: 2px solid #1e1e2f; */
+}
+
+.table-scroll-wrapper::-webkit-scrollbar-thumb:hover {
+  background-color: #6b7280;
+}
+
+.table-scroll-wrapper {
+  scrollbar-width: thin;
+  scrollbar-color: #4b5563 #1e1e2f;
+}
+
+.table-scroll-wrapper {
+  overflow-x: auto;
+  width: 100%;
+}
+
+.table-scroll-wrapper {
+  overflow-x: auto;
+  width: 100%;
+  font-size: 0.9rem;
+  /* width: max-content; */
+}
+
+.tableresultContainer {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  /* border-bottom: 1px solid #33333c; */
+  transform: translateZ(0);
+  /* width: max-content; */
+  /* align-items: center; */
+}
+
+.tableResultWord {
+  word-wrap: break-word;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  min-width: 120px;
+  padding-top: 15px !important;
+  padding-bottom: 15px !important;
+  border-bottom: 1px solid #33333c;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  /* font-size: clamp(12px, 1.2vw, 13px); */
+  font-size: 0.9rem;
+  color: #98A2B3;
+  font-family: Outfit,sans-serif;
+}
+
+.tableResultWord:last-child {
+  position: sticky;
+  right: 0;
+  z-index: 5; /* Keep above others */
+  background-color: #202839; /* Match table background */
+  box-shadow: -1px 0 0 #36363e; /* 左侧边框阴影 */
+}
+
+.tableResultWord .status-tag{
+  margin: 0 auto;
+}
+
+.status-tag {
+  border-radius: 5px;
+  padding: 5px 8px;
+  height: 15px;
+  color: white;
+  font-size: 13px;
+  text-align: center;
+  min-width: 80px;
+  font-weight: 500;
+  text-transform: capitalize;
+  letter-spacing: 0.3px;
+  background-color: #3b3b4e;
+  font-weight: 600;
+}
+
+.status-active {
+  color: #4fdc53; /* green */
+}
+
+.status-inactive {
+  color: #ff3f3f; /* red */
+}
+
+.dcc {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fadeIn {
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+@keyframes gradient-x {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+.animate-gradient-x {
+  background-size: 300% 300%; /* 放大渐变，效果更平滑 */
+  animation: gradient-x 15s ease infinite; /* 变慢一点，更柔和 */
+}
+
+.fontsize16 {
+  font-size: clamp(11.5px, 1.5vw, 16px);
+}
+
+/* Scroll bar */
+/* Scrollbar: Modern Gradient Style */
+.custom-scrollbar {
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: #4f46e5 #1f2937; /* thumb, track for Firefox */
+}
+
+/* WebKit Browsers */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(31, 41, 55, 0.3); /* dark semi-transparent track */
+  border-radius: 9999px;
+  box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #6366f1, #4f46e5); /* gradient thumb */
+  border-radius: 9999px;
+  border: 2px solid rgba(31,41,55,0.3); /* semi-transparent border for depth */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2); /* subtle shadow */
+  transition: background 0.3s, transform 0.2s;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #818cf8, #6366f1);
+  transform: scale(1.05);
+}
+
