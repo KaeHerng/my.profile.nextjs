@@ -51,12 +51,12 @@ export default function Sidebar() {
         </div>
 
         {/* Menu Links */}
-        <nav className="flex flex-col gap-2 p-3 mt-4">
+        <nav className="flex flex-col gap-1 p-3 mt-2 fontsize16">
           {menuItems.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className={`flex items-center gap-4 p-3 rounded-xl text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-all duration-200
+              className={`flex items-center gap-4 p-2 rounded-xl text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-all duration-200
                 ${!isOpen ? "justify-center" : "px-5"}`}
             >
               {item.icon}
@@ -82,7 +82,7 @@ export default function Sidebar() {
         <div className="flex justify-between items-center p-5 border-b border-gray-200">
           <h1 className="text-xl font-bold text-gray-800">MyPortfolio</h1>
           <button
-            className="text-gray-600 text-lg hover:text-gray-900"
+            className="text-gray-600 text-lg hover:text-gray-900 cursor-pointer"
             onClick={() => setIsMobileOpen(false)}
           >
             ✖️
@@ -104,12 +104,14 @@ export default function Sidebar() {
       </aside>
 
       {/* ===== MOBILE TOGGLE BUTTON ===== */}
+      {!isMobileOpen && 
       <button
-        className="fixed top-4 left-4 z-50 p-3 bg-white rounded-full shadow-lg md:hidden hover:bg-gray-100 transition"
+        className="fixed top-4 -left-2 z-50 p-3 bg-white rounded-xl shadow-lg md:hidden hover:bg-gray-100 transition cursor-pointer"
         onClick={() => setIsMobileOpen(true)}
       >
         ☰
       </button>
+      }
     </>
   );
 }
