@@ -32,7 +32,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-28 bg-gradient-to-b from-gray-50 to-gray-100">
+    <section id="contact" className="py-28 bg-gradient-to-b from-gray-50 to-gray-100 rounded-bl-3xl rounded-br-3xl">
       <div className="max-w-5xl mx-auto px-6 text-center">
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-800 mb-6">
           Contact Me

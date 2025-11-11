@@ -31,6 +31,18 @@ export default function Navbar() {
     setIsSubmenuOpen(false);
   };
 
+  const goToProfile = () => {
+    router.push("/Myprofile");
+    setIsOpen(false);
+    setIsSubmenuOpen(false);
+  };
+
+  const goToUpload = () => {
+    router.push("/upload");
+    setIsOpen(false);
+    setIsSubmenuOpen(false);
+  };
+
   const goToRegister= () => {
     router.push("/Auth/registration");
     setIsOpen(false);
@@ -64,7 +76,7 @@ export default function Navbar() {
       </Link>
 
       {/* Desktop Menu */}
-      <ul className="hidden md:flex space-x-8 text-gray-700 font-medium relative">
+      <ul className="hidden md:flex space-x-8 text-gray-700 font-medium relative items-center">
         <li><Link href="/#hero">Home</Link></li>
         <li><Link href="/#about">About</Link></li>
         <li><Link href="/#projects">Projects</Link></li>
@@ -152,94 +164,132 @@ export default function Navbar() {
                   Dashboard
                 </button>
               </li>
+              <li>
+                <button
+                  onClick={goToProfile}
+                  className="block w-full text-left px-4 py-2 hover:bg-gray-100">
+                  My Profile
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={goToUpload}
+                  className="block w-full text-left px-4 py-2 hover:bg-gray-100">
+                  Upload
+                </button>
+              </li>
               {/* 可以继续添加更多 submenu */}
             </ul>
           )}
         </li>
+        <div className="hidden md:flex items-center ml-4">
+          <img
+            src="/asset/akaza.jpg" // 替换成你的头像路径
+            alt="Profile"
+            className="w-10 h-10 rounded-full object-cover border-2 border-blue-500 cursor-pointer hover:scale-105 transition-transform"
+          />
+        </div>
       </ul>
 
       {/* Mobile Menu Button */}
       <button className="md:hidden text-gray-700" onClick={toggleMenu}>
         {isOpen ? "✖️" : "☰"}
       </button>
+      {/* <div className="md:hidden flex items-center ml-4">W
+        <img
+          src="/asset/akaza.jpg" // 替换成你的头像路径
+          alt="Profile"
+          className="w-10 h-10 rounded-full object-cover border-2 border-blue-500 cursor-pointer hover:scale-105 transition-transform"
+        />
+      </div> */}
 
       {/* Mobile Menu */}
       {isOpen && (
-        <ul className="absolute top-full left-0 w-full bg-white shadow-md flex flex-col space-y-4 px-6 py-4 text-gray-700 font-medium md:hidden rounded-b-xl">
-          <li><Link href="/#hero" onClick={() => setIsOpen(false)}>Home</Link></li>
-          <li><Link href="/#about" onClick={() => setIsOpen(false)}>About</Link></li>
-          <li><Link href="/#projects" onClick={() => setIsOpen(false)}>Projects</Link></li>
-          <li><Link href="/#contact" onClick={() => setIsOpen(false)}>Contact</Link></li>
-          <li className="submenu-container">
-            <button 
-              onClick={() => setAuthIsSubmenuOpen(prev => !prev)}
-              className="flex justify-between items-center w-full hover:text-blue-600"
-            >
-              Auth <span>{isAuthSubmenuOpen ? "▲" : "▼"}</span>
-            </button>
+      <ul className="absolute top-full left-0 w-full bg-white shadow-md flex flex-col space-y-4 px-6 py-4 text-gray-700 font-medium md:hidden rounded-b-xl">
 
-            {isAuthSubmenuOpen && (
-              <>
-              <ul className="mt-2 bg-gray-50 rounded-lg text-gray-700 text-sm flex flex-col space-y-2 px-4 py-2">
-                <li>
-                  <button
-                    onClick={goToRegister}
-                    className="text-left w-full hover:text-blue-600"
-                  >
-                    Registration
-                  </button>
-                </li>
-              </ul>
-              <ul className="mt-2 bg-gray-50 rounded-lg text-gray-700 text-sm flex flex-col space-y-2 px-4 py-2">
-                <li>
-                  <button
-                    onClick={goToLogin}
-                    className="text-left w-full hover:text-blue-600"
-                  >
-                    Login
-                  </button>
-                </li>
-              </ul>
-              </>
-            )}
-          </li>
+        {/* Mobile Profile Picture */}
+        <li className="flex justify-center">
+          <img
+            src="/asset/akaza.jpg"
+            alt="Profile"
+            className="w-12 h-12 rounded-full object-cover border-2 border-blue-500"
+          />
+        </li>
 
-          {/* Others submenu (Mobile click) */}
-          <li className="submenu-container">
-            <button
-              onClick={() => setIsSubmenuOpen(prev => !prev)}
-              className="flex justify-between items-center w-full hover:text-blue-600"
-            >
-              Others <span>{isSubmenuOpen ? "▲" : "▼"}</span>
-            </button>
+        {/* Menu Items */}
+        <li><Link href="/#hero" onClick={() => setIsOpen(false)}>Home</Link></li>
+        <li><Link href="/#about" onClick={() => setIsOpen(false)}>About</Link></li>
+        <li><Link href="/#projects" onClick={() => setIsOpen(false)}>Projects</Link></li>
+        <li><Link href="/#contact" onClick={() => setIsOpen(false)}>Contact</Link></li>
 
-            {isSubmenuOpen && (
-              <>
-              <ul className="mt-2 bg-gray-50 rounded-lg text-gray-700 text-sm flex flex-col space-y-2 px-4 py-2">
-                <li>
-                  <button
-                    onClick={goToTableView}
-                    className="text-left w-full hover:text-blue-600"
-                  >
-                    Table View
-                  </button>
-                </li>
-              </ul>
-              <ul className="mt-2 bg-gray-50 rounded-lg text-gray-700 text-sm flex flex-col space-y-2 px-4 py-2">
-                <li>
-                  <button
-                    onClick={goToDashboard}
-                    className="text-left w-full hover:text-blue-600"
-                  >
-                    Dashboard
-                  </button>
-                </li>
-              </ul>
-              </>
-            )}
-          </li>
-        </ul>
-      )}
+        {/* Auth Submenu */}
+        <li className="submenu-container">
+          <button 
+            onClick={() => setAuthIsSubmenuOpen(prev => !prev)}
+            className="flex justify-between items-center w-full hover:text-blue-600"
+          >
+            Auth <span>{isAuthSubmenuOpen ? "▲" : "▼"}</span>
+          </button>
+
+          {isAuthSubmenuOpen && (
+            <ul className="mt-2 bg-gray-50 rounded-lg text-gray-700 text-sm flex flex-col space-y-2 px-4 py-2">
+              <li>
+                <button
+                  onClick={goToRegister}
+                  className="text-left w-full hover:text-blue-600"
+                >
+                  Registration
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={goToLogin}
+                  className="text-left w-full hover:text-blue-600"
+                >
+                  Login
+                </button>
+              </li>
+            </ul>
+          )}
+        </li>
+        
+        {/* Others Submenu */}
+        <li className="submenu-container">
+          <button
+            onClick={() => setIsSubmenuOpen(prev => !prev)}
+            className="flex justify-between items-center w-full hover:text-blue-600"
+          >
+            Others <span>{isSubmenuOpen ? "▲" : "▼"}</span>
+          </button>
+        
+          {isSubmenuOpen && (
+            <ul className="mt-2 bg-gray-50 rounded-lg text-gray-700 text-sm flex flex-col space-y-2 px-4 py-2">
+              <li>
+                <button onClick={goToTableView} className="text-left w-full hover:text-blue-600">
+                  Table View
+                </button>
+              </li>
+              <li>
+                <button onClick={goToDashboard} className="text-left w-full hover:text-blue-600">
+                  Dashboard
+                </button>
+              </li>
+              <li>
+                <button onClick={goToProfile} className="text-left w-full hover:text-blue-600">
+                  My Profile
+                </button>
+              </li>
+              <li>
+                <button onClick={goToUpload} className="text-left w-full hover:text-blue-600">
+                  Upload
+                </button>
+              </li>
+            </ul>
+          )}
+        </li>
+      </ul>
+    )}
+
     </nav>
   );
 }

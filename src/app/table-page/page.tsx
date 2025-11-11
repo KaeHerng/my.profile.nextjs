@@ -4,7 +4,7 @@ import { useState } from "react";
 
 const generateFakeData = () => {
   const data = [];
-  for (let i = 1; i <= 200; i++) {
+  for (let i = 1; i <= 80; i++) {
     data.push({
       id: i,
       name: `Name ${i}`,

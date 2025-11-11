@@ -41,7 +41,7 @@ export default function RootLayout({
             <Sidebar />
 
             {/* Page content */}
-            <div className="flex-1 bg-white/50 rounded-3xl shadow-sm p-5 transition-all duration-300 max-w-full">
+            <div className="flex-1 bg-white/50 rounded-3xl shadow-sm p-2 transition-all duration-300 max-w-full">
               {children}
             </div>
           </main>
