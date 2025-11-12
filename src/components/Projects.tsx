@@ -5,29 +5,29 @@ export default function Projects() {
     {
       title: "Portfolio Website",
       description: "A modern, responsive portfolio built with Next.js and Tailwind CSS.",
-      image: "/assets/project1.jpg",
+      image: "/asset/meme1.jpg",
       tech: ["Next.js", "Tailwind CSS", "React"],
       link: "#",
     },
     {
-      title: "E-commerce App",
-      description: "Frontend e-commerce application with shopping cart and payment integration.",
-      image: "/assets/project2.jpg",
-      tech: ["React.js", "Node.js", "Stripe"],
+      title: "Warehouse Management System",
+      description: "A system to manage warehouse inventory, track stock levels, and streamline warehouse operations efficiently.",
+      image: "/asset/meme2.jpg",
+      tech: ["React.js", "Node.js", "JavaScript", "Context", "RESTful API"],
       link: "#",
     },
     {
-      title: "Open Source Library",
-      description: "A reusable React component library shared on GitHub.",
-      image: "/assets/project3.jpg",
-      tech: ["React", "TypeScript"],
+      title: "Claiming System",
+      description: "A versatile React component library designed to streamline claim-related workflows.",
+      image: "/asset/meme3.jpg",
+      tech: ["React", "JavaScript", "Redux", "RESTful API"],
       link: "#",
     },
     {
       title: "Open Source",
       description: "A reusable React component library shared on GitHub.",
-      image: "/assets/project3.jpg",
-      tech: ["React", "TypeScript"],
+      image: "/asset/meme4.jpg",
+      tech: ["React", "JavaScript", "Context", "RESTful API"],
       link: "#",
     },
   ];
@@ -36,8 +36,7 @@ export default function Projects() {
     <section
       id="projects"
       className="py-28"
-      style={{ scrollMarginTop: "5rem" }} // example inline style
-    >
+      style={{ scrollMarginTop: "5rem" }}>
       <div className="max-w-6xl mx-auto px-6 text-center">
         {/* Section Title */}
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-800 mb-4">
@@ -48,21 +47,20 @@ export default function Projects() {
         </p>
 
         {/* Projects Grid */}
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 auto-rows-min">
           {projects.map((project) => (
             <a
               key={project.title}
               href={project.link}
               target="_blank"
               className="group bg-white rounded-3xl shadow-lg overflow-hidden project-card"
-              style={{ cursor: "pointer" }} // inline style example
-            >
+              style={{ cursor: "pointer" }}>
               {/* Project Image */}
               <div className="overflow-hidden">
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-56 object-cover project-image"
+                  className="w-full h-80 object-cover project-image"
                 />
               </div>
 

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function RegistrationPage() {
   const [formData, setFormData] = useState({
@@ -10,6 +11,8 @@ export default function RegistrationPage() {
     confirmPassword: "",
   });
 
+  const router = useRouter();
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -18,6 +21,10 @@ export default function RegistrationPage() {
     e.preventDefault();
     // Add registration logic here
     console.log(formData);
+  };
+
+  const goToLogin = () => {
+    router.push("/Auth/login");
   };
 
   return (
@@ -71,7 +78,6 @@ export default function RegistrationPage() {
             className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-400 focus:outline-none transition"
             required
           />
-
           <button
             type="submit"
             className="mt-4 w-full py-3 bg-blue-400 hover:bg-blue-500 text-white font-semibold rounded-xl shadow-md transition"
@@ -82,7 +88,7 @@ export default function RegistrationPage() {
 
         <div className="mt-6 text-center text-gray-500">
           Already have an account?{" "}
-          <a href="/login" className="text-blue-500 hover:underline">
+          <a onClick={goToLogin} className="text-blue-500 hover:underline">
             Sign In
           </a>
         </div>

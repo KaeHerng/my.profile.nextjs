@@ -12,7 +12,7 @@ export default function MyProfilePage() {
   const [Gender, setGender] = useState('');
   const [Birth, setBirth] = useState('');
   const [Nationality, setNational] = useState('');
-  const [MaritalStatus, setMarital] = useState('');
+  const [MaritalStatus, setMarital] = useState('single');
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [notifications, setNotifications] = useState({
@@ -97,7 +97,7 @@ export default function MyProfilePage() {
                   type="text"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-400 outline-none shadow-sm transition"
+                  className="px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-400 outline-none shadow-sm transition bg-white"
                 />
               </div>
               <div className="flex flex-col">
@@ -106,7 +106,7 @@ export default function MyProfilePage() {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-400 outline-none shadow-sm transition"
+                  className="px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-400 outline-none shadow-sm transition bg-white"
                 />
               </div>
               <div className="flex flex-col">
@@ -115,7 +115,7 @@ export default function MyProfilePage() {
                   type="tel"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
-                  className="px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-400 outline-none shadow-sm transition"
+                  className="px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-400 outline-none shadow-sm transition bg-white"
                 />
               </div>
             </div>
@@ -137,7 +137,7 @@ export default function MyProfilePage() {
                 <select
                   value={Gender}
                   onChange={(e) => setGender(e.target.value)}
-                  className={`px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-400 outline-none shadow-sm transition`}>
+                  className={`px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-400 outline-none shadow-sm transition bg-white`}>
                   <option value="">Select Gender</option>
                   <option value="male">Male</option>
                   <option value="female">Female</option>
@@ -150,7 +150,7 @@ export default function MyProfilePage() {
                   type="date"
                   value={Birth}
                   onChange={(e) => setBirth(e.target.value)}
-                  className="px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-400 outline-none shadow-sm transition"
+                  className="px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-400 outline-none shadow-sm transition bg-white"
                 />
               </div>
             </div>
@@ -162,7 +162,7 @@ export default function MyProfilePage() {
                   value={Nationality}
                   onChange={(e) => setNational(e.target.value)}
                   placeholder="eg.Malaysia"
-                  className="px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-400 outline-none shadow-sm transition"
+                  className="px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-400 outline-none shadow-sm transition bg-white"
                 />
               </div>
               <div className="flex flex-col">
@@ -221,7 +221,7 @@ export default function MyProfilePage() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Enter new password"
-              className="px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-400 outline-none shadow-sm w-full pr-10 transition"
+              className="px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-400 outline-none shadow-sm w-full pr-10 transition bg-white"
             />
             <button
               type="button"
