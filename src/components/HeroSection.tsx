@@ -4,11 +4,18 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import PopupModal from "@/components/Modal/PopupModal";
 
+import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "@/store/store";
+import { updateUser } from "@/store/userSlice";
+
 export default function HeroSection() {
+  const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
+  const { user, isLoggedIn, theme } = useSelector((state: RootState) => state.user);
 
   // Typing Role Component
   function TypingRole() {
+
     const roles = ["Frontend Developer", "React Enthusiast", "UI/UX Lover"];
     const [index, setIndex] = useState(0);
     const [subIndex, setSubIndex] = useState(0);
@@ -44,6 +51,17 @@ export default function HeroSection() {
       </span>
     );
   }
+
+  useEffect(() => {
+    console.log('===================')
+    console.log('user =>', user)
+    console.log('theme', theme)
+    console.log('===================')
+  }, []);
+
+  // const ClcikM = () => {
+  //   dispatch(updateUser({ email: "newemail@example.com" }));
+  // }
 
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center text-center overflow-hidden bg-gradient-to-br from-white via-blue-50 to-purple-50 rounded-tl-3xl rounded-tr-3xl">
@@ -97,7 +115,7 @@ export default function HeroSection() {
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-gray-800">
           Hi, I’m{" "}
           <span className="bg-clip-text text-transparent bg-gradient-to-r from-sky-500 to-purple-500 animate-gradient-x">
-            Chong Kae Herng
+            {user?.name}
           </span>{" "}
           👋
         </h1>
@@ -124,6 +142,15 @@ export default function HeroSection() {
         >
           Learn More
         </motion.button>
+
+        {/* <motion.button
+          whileHover={{ scale: 1.05, boxShadow: "0px 10px 25px rgba(59,130,246,0.25)" }}
+          whileTap={{ scale: 0.95 }}
+          onClick={() => ClcikM()}
+          className="mt-6 px-10 py-4 bg-gradient-to-r from-sky-400 to-indigo-400 text-white rounded-3xl font-semibold shadow-md hover:from-sky-500 hover:to-indigo-500 transition-all duration-300"
+        >
+          Click
+        </motion.button> */}
       </motion.div>
       
       {/* Hero Image */}

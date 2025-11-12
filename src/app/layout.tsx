@@ -54,8 +54,10 @@
 
 // src/app/Auth/layout.tsx
 import "./globals.css";
+// import { Provider } from "react-redux";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { ReduxProvider } from "@/store/Providers";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -76,7 +78,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        {children}
+        {/* <Provider store={store}> */}
+          {/* {children} */}
+            <ReduxProvider>{children}</ReduxProvider>
+        {/* </Provider> */}
       </body>
     </html>
   );

@@ -4,9 +4,13 @@ import { useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { Eye, EyeOff } from "lucide-react";
 
+import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "@/store/store";
+
 export default function MyProfilePage() {
+  const { user, isLoggedIn, theme } = useSelector((state: RootState) => state.user);
   const [profileImage, setProfileImage] = useState<string | null>(null);
-  const [name, setName] = useState("Chong Kae Herng");
+  const [name, setName] = useState(user?.name);
   const [email, setEmail] = useState("kaeherngchong@gmail.com");
   const [phone, setPhone] = useState("014-2596639");
   const [Gender, setGender] = useState('');

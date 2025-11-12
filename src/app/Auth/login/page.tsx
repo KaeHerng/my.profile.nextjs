@@ -5,8 +5,13 @@ import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { Eye, EyeOff } from "lucide-react";
 
+import { useDispatch } from "react-redux";
+import { login } from "@/store/userSlice";
+
 export default function LoginPage() {
+  const dispatch = useDispatch();
   const router = useRouter();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -14,6 +19,8 @@ export default function LoginPage() {
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
     console.log({ email, password });
+    const user = { name: "Chong Kae Herng", email: "kaeherngchong@gmail.com" };
+    dispatch(login(user));
     router.push("/Page");
     // router.push("/Firstgo");
   };

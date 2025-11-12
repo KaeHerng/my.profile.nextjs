@@ -4,10 +4,16 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
+import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "@/store/store";
+import { logout } from "@/store/userSlice";
+
 export default function Navbar() {
+  const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
   const [isSubmenuOpen, setIsSubmenuOpen] = useState(false);
   const [isAuthSubmenuOpen, setAuthIsSubmenuOpen] = useState(false);
+  const [isProfileSubmenuOpen, setIsProfileSubmenuOpen] = useState(false);
   let closeTimeout: NodeJS.Timeout;
   const router = useRouter();
 
@@ -68,6 +74,16 @@ export default function Navbar() {
     return () => document.removeEventListener("click", handleClickOutside);
   }, []);
 
+  const handleLogout = () => {
+    dispatch(logout()); 
+
+    if (typeof window !== "undefined") {
+      localStorage.removeItem("reduxState");
+    } 
+
+    router.push("/");
+  };
+
   return (
     <nav className="bg-white shadow-md z-40 rounded-xl px-6 py-3 mx-4 mt-4 mb-0 flex justify-between items-center sticky top-0 relative">
       {/* Logo */}
@@ -87,6 +103,7 @@ export default function Navbar() {
             clearTimeout(closeTimeout);
             setAuthIsSubmenuOpen(true);
             setIsSubmenuOpen(false);
+            setIsProfileSubmenuOpen(false);
           }}
           onMouseLeave={() => {
             closeTimeout = setTimeout(() => setAuthIsSubmenuOpen(false), 200); // 200ms 延迟
@@ -107,16 +124,14 @@ export default function Navbar() {
               <li>
                 <button
                   onClick={goToRegister}
-                  className="block w-full text-left px-4 py-2 hover:bg-gray-100"
-                >
+                  className="block w-full text-left px-4 py-2 hover:bg-gray-100">
                   Registration
                 </button>
               </li>
               <li>
                 <button
                   onClick={goToLogin}
-                  className="block w-full text-left px-4 py-2 hover:bg-gray-100"
-                >
+                  className="block w-full text-left px-4 py-2 hover:bg-gray-100">
                   Login
                 </button>
               </li>
@@ -132,6 +147,7 @@ export default function Navbar() {
             clearTimeout(closeTimeout);
             setIsSubmenuOpen(true);
             setAuthIsSubmenuOpen(false);
+            setIsProfileSubmenuOpen(false);
           }}
           onMouseLeave={() => {
             closeTimeout = setTimeout(() => setIsSubmenuOpen(false), 200); // 200ms 延迟
@@ -182,13 +198,49 @@ export default function Navbar() {
             </ul>
           )}
         </li>
-        <div className="hidden md:flex items-center ml-4">
+        {/* <div className="hidden md:flex items-center ml-4">
           <img
             src="/asset/akaza.jpg" // 替换成你的头像路径
             alt="Profile"
             className="w-10 h-10 rounded-full object-cover border-2 border-blue-500 cursor-pointer hover:scale-105 transition-transform"
           />
-        </div>
+        </div> */}
+
+        <li className="relative submenu-container">
+          <img
+            src="/asset/akaza.jpg"
+            alt="Profile"
+            className="w-10 h-10 rounded-full object-cover border-2 border-blue-500 cursor-pointer hover:scale-105 transition-transform"
+            onMouseEnter={() => {
+              clearTimeout(closeTimeout);
+              setIsProfileSubmenuOpen(true);
+              setIsSubmenuOpen(false);
+              setAuthIsSubmenuOpen(false);
+            }}
+            onMouseLeave={() => {
+              closeTimeout = setTimeout(() => setIsProfileSubmenuOpen(false), 200); // 200ms 延迟
+            }}
+          />
+
+          {isProfileSubmenuOpen && (
+            <ul
+              className="absolute right-0 mt-2 bg-white shadow-md rounded-lg py-2 text-gray-700 text-sm z-50 w-36"
+              onMouseEnter={() => clearTimeout(closeTimeout)}
+              onMouseLeave={() => {
+                closeTimeout = setTimeout(() => setIsProfileSubmenuOpen(false), 200); // 200ms 延迟
+              }}
+            >
+              <li>
+                <button
+                  onClick={handleLogout}
+                  className="block w-full text-left px-4 py-2 hover:bg-gray-100"
+                >
+                  Logout
+                </button>
+              </li>
+            </ul>
+          )}
+        </li>
       </ul>
 
       {/* Mobile Menu Button */}
