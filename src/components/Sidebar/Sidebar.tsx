@@ -9,10 +9,10 @@ export default function Sidebar() {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
 
   const menuItems = [
-    { label: "Home", href: "/", icon: <HomeIcon size={22} /> },
-    { label: "About Me", href: "/#about", icon: <UserIcon size={22} /> },
-    { label: "Projects", href: "/#projects", icon: <FolderIcon size={22} /> },
-    { label: "Contact", href: "/#contact", icon: <MailIcon size={22} /> },
+    { label: "Home", href: "/Page", icon: <HomeIcon size={22} /> },
+    { label: "About Me", href: "/Page/#about", icon: <UserIcon size={22} /> },
+    { label: "Projects", href: "/Page/#projects", icon: <FolderIcon size={22} /> },
+    { label: "Contact", href: "/Page/#contact", icon: <MailIcon size={22} /> },
   ];
 
   return (

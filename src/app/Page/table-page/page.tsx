@@ -37,12 +37,28 @@ export default function TablePage() {
   const totalPages = Math.ceil(data.length / pageSize);
   const currentData = data.slice((page - 1) * pageSize, page * pageSize);
 
+  const [searchTerm, setSearchTerm] = useState("");
+  const [statusFilter, setStatusFilter] = useState("");
+
   const handlePrev = () => setPage((prev) => Math.max(prev - 1, 1));
   const handleNext = () => setPage((prev) => Math.min(prev + 1, totalPages));
   const handlePageSizeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setPageSize(Number(e.target.value));
     setPage(1);
   };
+
+
+  // filter and Search 
+  // Filtered data based on search & status
+  const filteredData = data.filter((row) => {
+    const matchesSearch =
+      row.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      row.email.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesStatus = statusFilter ? row.status === statusFilter : true;
+    return matchesSearch && matchesStatus;
+  });
+
+  const totalPagesfilter = Math.ceil(filteredData.length / pageSize);
 
   return (
     // <div className="p-6 min-h-screen flex flex-col gap-12 bg-gradient-to-r from-blue-200 via-blue-100 to-blue-200 animate-gradient-x rounded-3xl">
@@ -516,6 +532,146 @@ export default function TablePage() {
         </div>
       </div>
 
+
+      {/* ===== Sticky Last Column Table (Fixed Header + Sticky Last Column) ===== */}
+      <div className="bg-gray-50 rounded-2xl shadow-2xl border border-gray-200 p-4 flex flex-col gap-4">
+        <h2 className="text-2xl font-bold text-gray-800 mb-2">Sticky Last Column Table</h2>
+      
+        {/* Top Controls */}
+        <div className="flex justify-between items-center flex-wrap gap-3">
+          <div className="flex items-center gap-2">
+            <label className="text-gray-700 font-medium">Rows per page:</label>
+            <select
+              value={pageSize}
+              onChange={handlePageSizeChange}
+              className="px-3 py-1 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all hover:scale-105"
+            >
+              {[5, 10, 20, 50].map((size) => (
+                <option key={size} value={size}>{size}</option>
+              ))}
+            </select>
+          </div>
+      
+          <div className="flex items-center gap-3 flex-wrap">
+            {/* Search */}
+            <input
+              type="text"
+              placeholder="Search by Name or Email..."
+              value={searchTerm}
+              onChange={(e) => {
+                setSearchTerm(e.target.value);
+                setPage(1); // reset page when searching
+              }}
+              className="px-3 py-1 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all hover:scale-105"
+            />
+      
+            {/* Filter by Status */}
+            <select
+              value={statusFilter}
+              onChange={(e) => {
+                setStatusFilter(e.target.value);
+                setPage(1); // reset page when filtering
+              }}
+              className="px-3 py-1 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all hover:scale-105"
+            >
+              <option value="">All Status</option>
+              <option value="Active">Active</option>
+              <option value="Inactive">Inactive</option>
+            </select>
+          </div>
+      
+          <div className="text-gray-700 font-medium">
+            Showing {(page - 1) * pageSize + 1} - {Math.min(page * pageSize, data.length)} of {data.length} records
+          </div>
+        </div>
+      
+        {/* Filtered & Searched Data */}
+        <div className="overflow-auto max-h-[400px] rounded-2xl shadow-inner scrollbar-thin scrollbar-thumb-blue-400 scrollbar-track-gray-200">
+          <table className="min-w-[1000px] w-full border-collapse text-sm">
+            <thead className="sticky top-0 bg-gray-100 z-10">
+              <tr>
+                {columns.map((col, idx) => (
+                  <th
+                    key={col}
+                    className={`px-6 py-3 text-left font-semibold tracking-wide border-b border-gray-300 ${
+                      idx === columns.length - 1 ? "sticky right-0 bg-gray-100 z-20" : ""
+                    }`}
+                  >
+                    {col}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+      
+            <tbody>
+              {filteredData.slice((page - 1) * pageSize, page * pageSize).map((row) => (
+                <tr key={row.id} className="hover:bg-gray-50 transition-all">
+                  {columns.map((col, idx) => {
+                    const value = row[col.toLowerCase() as keyof typeof row];
+                    return (
+                      <td
+                        key={col}
+                        className={`px-6 py-3 text-gray-700 border-b border-gray-200 ${
+                          idx === columns.length - 1 ? "sticky right-0 bg-gray-50 z-5" : ""
+                        }`}
+                      >
+                        {value}
+                      </td>
+                    );
+                  })}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <div className="flex justify-center items-center gap-2 mt-3 flex-wrap">
+          <button
+            onClick={handlePrev}
+            disabled={page === 1}
+            className="px-4 py-2 bg-gray-200 text-gray-700 rounded-md disabled:opacity-50 disabled:cursor-not-allowed transition-all hover:bg-gray-300"
+          >
+            Prev
+          </button>
+            
+          {Array.from({ length: totalPagesfilter }, (_, i) => i + 1)
+            .filter((p) => {
+              return (
+                p === 1 ||
+                p === 2 ||
+                p === totalPagesfilter ||
+                p === totalPagesfilter - 1 ||
+                (p >= page - 1 && p <= page + 1)
+              );
+            })
+            .map((p, idx, arr) => {
+              const prev = arr[idx - 1];
+              const showDots = prev && p - prev > 1;
+              return (
+                <span key={p} className="flex items-center">
+                  {showDots && <span className="px-2 text-gray-400">...</span>}
+                  <button
+                    onClick={() => setPage(p)}
+                    className={`px-3 py-1 rounded-md transition-all ${
+                      p === page
+                        ? "bg-blue-500 text-white shadow-md scale-105"
+                        : "bg-white text-gray-700 hover:bg-blue-50 hover:text-blue-600"
+                    }`}
+                  >
+                    {p}
+                  </button>
+                </span>
+              );
+            })}
+
+          <button
+            onClick={handleNext}
+            disabled={page === totalPagesfilter}
+            className="px-4 py-2 bg-gray-200 text-gray-700 rounded-md disabled:opacity-50 disabled:cursor-not-allowed transition-all hover:bg-gray-300"
+          >
+            Next
+          </button>
+        </div>
+      </div>
 
 
     </div>

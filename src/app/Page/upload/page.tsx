@@ -37,9 +37,9 @@ export default function UploadPage() {
         transition={{ duration: 0.8 }}
         className="max-w-5xl mx-auto bg-white/80 backdrop-blur-md p-10 rounded-3xl shadow-xl flex flex-col items-center gap-6"
       >
-        <h2 className="text-2xl font-bold text-gray-800">Upload Profile Image</h2>
+        <h2 className="text-2xl font-bold text-gray-800">Upload Image</h2>
         <p className="text-gray-500 text-center mb-4">
-          Click the image to select a new profile picture
+          Click the image to select a new picture
         </p>
 
         <div

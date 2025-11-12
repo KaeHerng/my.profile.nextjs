@@ -14,31 +14,31 @@ export default function Navbar() {
   const toggleMenu = () => setIsOpen(!isOpen);
 
   const goToDetails = () => {
-    router.push("/more-details?ref=navbar&user=123");
+    router.push("/Page/more-details?ref=navbar&user=123");
     setIsOpen(false);
     setIsSubmenuOpen(false);
   };
 
   const goToTableView = () => {
-    router.push("/table-page");
+    router.push("/Page/table-page");
     setIsOpen(false);
     setIsSubmenuOpen(false);
   };
 
   const goToDashboard = () => {
-    router.push("/dashboard");
+    router.push("/Page/dashboard");
     setIsOpen(false);
     setIsSubmenuOpen(false);
   };
 
   const goToProfile = () => {
-    router.push("/Myprofile");
+    router.push("/Page/Myprofile");
     setIsOpen(false);
     setIsSubmenuOpen(false);
   };
 
   const goToUpload = () => {
-    router.push("/upload");
+    router.push("/Page/upload");
     setIsOpen(false);
     setIsSubmenuOpen(false);
   };
@@ -77,10 +77,10 @@ export default function Navbar() {
 
       {/* Desktop Menu */}
       <ul className="hidden md:flex space-x-8 text-gray-700 font-medium relative items-center">
-        <li><Link href="/#hero">Home</Link></li>
-        <li><Link href="/#about">About</Link></li>
-        <li><Link href="/#projects">Projects</Link></li>
-        <li><Link href="/#contact">Contact</Link></li>
+        <li><Link href="/Page/#hero">Home</Link></li>
+        <li><Link href="/Page/#about">About</Link></li>
+        <li><Link href="/Page/#projects">Projects</Link></li>
+        <li><Link href="/Page/#contact">Contact</Link></li>
         <li
           className="relative submenu-container"
           onMouseEnter={() => {
@@ -217,10 +217,10 @@ export default function Navbar() {
         </li>
 
         {/* Menu Items */}
-        <li><Link href="/#hero" onClick={() => setIsOpen(false)}>Home</Link></li>
-        <li><Link href="/#about" onClick={() => setIsOpen(false)}>About</Link></li>
-        <li><Link href="/#projects" onClick={() => setIsOpen(false)}>Projects</Link></li>
-        <li><Link href="/#contact" onClick={() => setIsOpen(false)}>Contact</Link></li>
+        <li><Link href="/Page/#hero" onClick={() => setIsOpen(false)}>Home</Link></li>
+        <li><Link href="/Page/#about" onClick={() => setIsOpen(false)}>About</Link></li>
+        <li><Link href="/Page/#projects" onClick={() => setIsOpen(false)}>Projects</Link></li>
+        <li><Link href="/Page/#contact" onClick={() => setIsOpen(false)}>Contact</Link></li>
 
         {/* Auth Submenu */}
         <li className="submenu-container">
