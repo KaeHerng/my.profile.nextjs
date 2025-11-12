@@ -40,7 +40,7 @@ export default function PopupModal({ isOpen, onClose, title, children }: PopupMo
           flex flex-col min-h-[200px] max-h-[80vh]`}
       >
         {/* Header */}
-        <div className="p-6 border-b flex justify-between items-center">
+        <div className="p-6 border-b border-gray-300 flex justify-between items-center">
           {title && <h2 className="text-2xl font-semibold">{title}</h2>}
           <button
             onClick={handleClose}
@@ -56,7 +56,7 @@ export default function PopupModal({ isOpen, onClose, title, children }: PopupMo
         </div>
 
         {/* Optional bottom button */}
-        <div className="p-6 border-t flex justify-end">
+        <div className="p-6 border-t border-gray-300 flex justify-end">
           <button
             onClick={handleClose}
             className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition">

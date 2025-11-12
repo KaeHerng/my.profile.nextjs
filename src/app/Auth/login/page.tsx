@@ -15,14 +15,30 @@ export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [errorMsg, setErrorMsg] = useState(""); // <-- new
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log({ email, password });
-    const user = { name: "Chong Kae Herng", email: "kaeherngchong@gmail.com" };
+
+    // Simple client-side validation
+    if (!email || !password) {
+      setErrorMsg("Email and password cannot be empty.");
+      return;
+    }
+
+    // Example: check password (mock)
+    if (password !== "123456") {
+      setErrorMsg("Incorrect password. Please try again.");
+      return;
+    }
+
+    // Clear error
+    setErrorMsg("");
+
+    // Mock login
+    const user = { name: "Chong Kae Herng", email };
     dispatch(login(user));
     router.push("/Page");
-    // router.push("/Firstgo");
   };
 
   return (
@@ -49,6 +65,13 @@ export default function LoginPage() {
       >
         <h1 className="text-3xl font-extrabold text-gray-800 text-center mb-3">Welcome Back</h1>
         <p className="text-gray-500 text-center mb-8">Login to your account</p>
+
+        {/* Error message */}
+        {errorMsg && (
+          <div className="mb-4 text-red-600 text-center font-medium animate-pulse">
+            {errorMsg}
+          </div>
+        )}
 
         <form onSubmit={handleLogin} className="flex flex-col gap-6">
 

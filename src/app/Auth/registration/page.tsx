@@ -11,6 +11,7 @@ export default function RegistrationPage() {
     confirmPassword: "",
   });
 
+  const [errorMsg, setErrorMsg] = useState(""); // <-- new
   const router = useRouter();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -19,8 +20,26 @@ export default function RegistrationPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Add registration logic here
-    console.log(formData);
+
+    // Validation
+    if (!formData.name || !formData.email || !formData.password || !formData.confirmPassword) {
+      setErrorMsg("All fields are required.");
+      return;
+    }
+
+    if (formData.password !== formData.confirmPassword) {
+      setErrorMsg("Passwords do not match.");
+      return;
+    }
+
+    // Clear error
+    setErrorMsg("");
+
+    // Mock registration logic
+    console.log("Registered user:", formData);
+
+    // Redirect to login
+    router.push("/Auth/login");
   };
 
   const goToLogin = () => {
@@ -33,6 +52,13 @@ export default function RegistrationPage() {
         <h1 className="text-3xl font-bold text-gray-800 mb-6 text-center">
           Create Your Account
         </h1>
+
+        {/* Error message */}
+        {errorMsg && (
+          <div className="mb-4 text-red-600 text-center font-medium animate-pulse">
+            {errorMsg}
+          </div>
+        )}
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           {/* Name */}
@@ -78,6 +104,7 @@ export default function RegistrationPage() {
             className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-400 focus:outline-none transition"
             required
           />
+
           <button
             type="submit"
             className="mt-4 w-full py-3 bg-blue-400 hover:bg-blue-500 text-white font-semibold rounded-xl shadow-md transition"
@@ -88,7 +115,7 @@ export default function RegistrationPage() {
 
         <div className="mt-6 text-center text-gray-500">
           Already have an account?{" "}
-          <a onClick={goToLogin} className="text-blue-500 hover:underline">
+          <a onClick={goToLogin} className="text-blue-500 hover:underline cursor-pointer">
             Sign In
           </a>
         </div>
