@@ -58,6 +58,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { ReduxProvider } from "@/store/Providers";
+import { CartProvider } from '@/context/CartContext';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -80,7 +81,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         {/* <Provider store={store}> */}
           {/* {children} */}
-            <ReduxProvider>{children}</ReduxProvider>
+            <ReduxProvider>
+              <CartProvider>
+                {children}
+              </CartProvider>
+            </ReduxProvider>
         {/* </Provider> */}
       </body>
     </html>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Pagination2 from '@/components/pagination2';
 
 const generateFakeData = () => {
   const data = [];
@@ -73,8 +74,7 @@ export default function TablePage() {
             <select
               value={pageSize}
               onChange={handlePageSizeChange}
-              className="px-3 py-1 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all hover:scale-105"
-            >
+              className="px-3 py-1 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all hover:scale-105">
               {[5, 10, 20, 50].map((size) => (
                 <option key={size} value={size}>
                   {size}
@@ -134,53 +134,8 @@ export default function TablePage() {
         </div>
 
         {/* Pagination */}
-        <div className="flex justify-center items-center gap-2 mt-3 flex-wrap">
-          <button
-            onClick={handlePrev}
-            disabled={page === 1}
-            className="px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-lg disabled:opacity-50 disabled:cursor-not-allowed transition-all hover:scale-105"
-          >
-            Prev
-          </button>
-
-          {Array.from({ length: totalPages }, (_, i) => i + 1)
-            .filter((p) => {
-              return (
-                p === 1 ||
-                p === 2 ||
-                p === totalPages ||
-                p === totalPages - 1 ||
-                (p >= page - 1 && p <= page + 1)
-              );
-            })
-            .map((p, idx, arr) => {
-              const prev = arr[idx - 1];
-              const showDots = prev && p - prev > 1;
-              return (
-                <span key={p} className="flex items-center">
-                  {showDots && <span className="px-2 text-gray-400">...</span>}
-                  <button
-                    onClick={() => setPage(p)}
-                    className={`px-3 py-1 rounded-md transition-all ${
-                      p === page
-                        ? "bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-lg scale-105"
-                        : "bg-white text-gray-700 hover:bg-blue-50 hover:text-blue-600"
-                    }`}
-                  >
-                    {p}
-                  </button>
-                </span>
-              );
-            })}
-
-          <button
-            onClick={handleNext}
-            disabled={page === totalPages}
-            className="px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-lg disabled:opacity-50 disabled:cursor-not-allowed transition-all hover:scale-105"
-          >
-            Next
-          </button>
-        </div>
+        <Pagination2 page={page} totalPages={totalPages} setPage={setPage} />
+        
       </div>
 
       {/* ===== Dark Table (New Design) ===== */}

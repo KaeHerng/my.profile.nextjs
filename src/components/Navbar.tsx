@@ -49,6 +49,12 @@ export default function Navbar() {
     setIsSubmenuOpen(false);
   };
 
+  const goToproducts = () => {
+    router.push("/Page/products");
+    setIsOpen(false);
+    setIsSubmenuOpen(false);
+  };
+
   const goToRegister= () => {
     router.push("/Auth/registration");
     setIsOpen(false);
@@ -192,6 +198,13 @@ export default function Navbar() {
                   onClick={goToUpload}
                   className="block w-full text-left px-4 py-2 hover:bg-gray-100">
                   Upload
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={goToproducts}
+                  className="block w-full text-left px-4 py-2 hover:bg-gray-100">
+                  Products
                 </button>
               </li>
               {/* 可以继续添加更多 submenu */}
