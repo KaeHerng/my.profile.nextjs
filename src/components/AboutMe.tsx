@@ -3,7 +3,7 @@
 import FadeInWhenVisible from "@/components/animations/FadeInWhenVisible";
 
 export default function AboutMe() {
-  const skills = ["React.js", "JavaScript", "Next.js", "Tailwind CSS", "Node.js", "Redux", "Styled + CSS"];
+  const skills = ["React.js", "JavaScript", "Next.js", "Tailwind CSS", "Node.js", "Redux", "Styled + CSS", "i18n"];
   const stats = [
     { label: "Years of Experience", value: "4+" },
     { label: "Projects Completed", value: "9+" },

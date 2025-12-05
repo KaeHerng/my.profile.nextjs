@@ -6,7 +6,7 @@ export default function Projects() {
       title: "Portfolio Website",
       description: "A modern, responsive portfolio built with Next.js and Tailwind CSS.",
       image: "/asset/meme1.jpg",
-      tech: ["Next.js", "Tailwind CSS", "React"],
+      tech: ["Next.js", "Tailwind CSS", "React", "i18n", "Redux", "Context"],
       link: "#",
     },
     {
